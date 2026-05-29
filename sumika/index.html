@@ -1,1076 +1,1047 @@
 <!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sumika ai | 不動産営業の追客AI</title>
-    <meta
-      name="description"
-      content="Sumika ai is an AI follow-up agent for Japanese real estate sales teams."
-    />
-    <script>
-      window.SUMIKA_CONFIG = {
-        posthogKey: "YOUR_POSTHOG_PROJECT_API_KEY",
-        posthogHost: "https://us.i.posthog.com",
-        clarityProjectId: "YOUR_CLARITY_PROJECT_ID",
-        tallyFormId: "vGKYYX",
-      };
-    </script>
-    <script>
-      if (
-        window.SUMIKA_CONFIG.posthogKey &&
-        window.SUMIKA_CONFIG.posthogKey !== "YOUR_POSTHOG_PROJECT_API_KEY"
-      ) {
-        !(function (t, e) {
-          var o, n, p, r;
-          e.__SV ||
-            ((window.posthog = e),
-            (e._i = []),
-            (e.init = function (i, s, a) {
-              function g(t, e) {
-                var o = e.split(".");
-                2 == o.length && ((t = t[o[0]]), (e = o[1]));
-                t[e] = function () {
-                  t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
-                };
-              }
-              ((p = t.createElement("script")).type = "text/javascript"),
-                (p.crossOrigin = "anonymous"),
-                (p.async = !0),
-                (p.src =
-                  (s.api_host || "https://app.posthog.com") +
-                  "/static/array.js"),
-                (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
-                  p,
-                  r,
-                );
-              var u = e;
-              for (
-                void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
-                  u.people = u.people || [],
-                  u.toString = function (t) {
-                    var e = "posthog";
-                    return (
-                      "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e
-                    );
-                  },
-                  u.people.toString = function () {
-                    return u.toString(1) + ".people (stub)";
-                  },
-                  o =
-                    "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags reloadFeatureFlags getFeatureFlag getFeatureFlagPayload group".split(
-                      " ",
-                    ),
-                  n = 0;
-                n < o.length;
-                n++
-              )
-                g(u, o[n]);
-              e._i.push([i, s, a]);
-            }),
-            (e.__SV = 1));
-        })(document, window.posthog || []);
+<htm lang="ja">
 
-        posthog.init(window.SUMIKA_CONFIG.posthogKey, {
-          api_host: window.SUMIKA_CONFIG.posthogHost,
-          person_profiles: "identified_only",
-        });
-      }
-    </script>
-    <script>
-      if (
-        window.SUMIKA_CONFIG.clarityProjectId &&
-        window.SUMIKA_CONFIG.clarityProjectId !== "YOUR_CLARITY_PROJECT_ID"
-      ) {
-        (function (c, l, a, r, i, t, y) {
-          c[a] =
-            c[a] ||
-            function () {
-              (c[a].q = c[a].q || []).push(arguments);
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Sumika ai | 不動産営業の追客AI</title>
+        <meta name="description" content="Sumika ai is an AI follow-up agent for Japanese real estate sales teams." />
+        <script>
+            window.SUMIKA_CONFIG = {
+                posthogKey: "phc_uMw9F4xmw4FrzajprdSRYodaarZ856fpEHt4ZQGfFaBL",
+                posthogHost: "https://us.i.posthog.com",
+                clarityProjectId: "YOUR_CLARITY_PROJECT_ID",
+                tallyFormId: "wyp7y04vxt",
             };
-          t = l.createElement(r);
-          t.async = 1;
-          t.src = "https://www.clarity.ms/tag/" + i;
-          y = l.getElementsByTagName(r)[0];
-          y.parentNode.insertBefore(t, y);
-        })(
-          window,
-          document,
-          "clarity",
-          "script",
-          window.SUMIKA_CONFIG.clarityProjectId,
-        );
-      }
-    </script>
-    <style>
-      :root {
-        --bg: #ffffff;
-        --ink: #333333;
-        --muted: #6f6f6f;
-        --line: #d9d9d9;
-        --block: #e8e8e8;
-        --block-soft: #f5f5f5;
-        --accent: #f9604d;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        color: var(--ink);
-        background: var(--bg);
-        font-family:
-          "Noto Sans JP", "Source Han Sans", "Hiragino Sans", "Helvetica Neue",
-          Arial, sans-serif;
-        letter-spacing: 0;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      button,
-      input,
-      select,
-      textarea {
-        font: inherit;
-      }
-
-      .page {
-        overflow: hidden;
-      }
-
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 72px;
-        padding: 0 max(28px, calc((100vw - 1180px) / 2));
-        background: rgba(255, 255, 255, 0.94);
-        border-bottom: 1px solid var(--line);
-        backdrop-filter: blur(12px);
-      }
-
-      .logo {
-        font-size: 22px;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        text-transform: lowercase;
-      }
-
-      .logo span {
-        color: var(--accent);
-      }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 28px;
-        color: var(--muted);
-        font-size: 14px;
-        font-weight: 700;
-      }
-
-      .nav-cta,
-      .button {
-        display: inline-flex;
-        min-height: 44px;
-        align-items: center;
-        justify-content: center;
-        padding: 0 20px;
-        color: #fff;
-        background: var(--accent);
-        border: 1px solid var(--accent);
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 800;
-        cursor: pointer;
-      }
-
-      .button.secondary {
-        color: var(--ink);
-        background: #fff;
-        border-color: var(--ink);
-      }
-
-      .section {
-        width: min(1180px, calc(100% - 48px));
-        margin: 0 auto;
-        padding: 96px 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .hero {
-        width: min(1180px, calc(100% - 48px));
-        min-height: calc(100svh - 72px);
-        margin: 0 auto;
-        padding: 72px 0 80px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
-        gap: 56px;
-        align-items: center;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 28px;
-        color: var(--accent);
-        font-size: 13px;
-        font-weight: 900;
-      }
-
-      .eyebrow::before {
-        width: 42px;
-        height: 2px;
-        content: "";
-        background: var(--accent);
-      }
-
-      h1,
-      h2,
-      h3,
-      p {
-        margin-top: 0;
-      }
-
-      h1 {
-        max-width: 620px;
-        margin-bottom: 28px;
-        font-size: clamp(56px, 8vw, 116px);
-        line-height: 0.95;
-        letter-spacing: -0.06em;
-      }
-
-      .hero-lead {
-        max-width: 560px;
-        margin-bottom: 34px;
-        color: var(--ink);
-        font-size: clamp(18px, 2vw, 24px);
-        font-weight: 700;
-        line-height: 1.75;
-      }
-
-      .hero-sub {
-        max-width: 540px;
-        margin-bottom: 34px;
-        color: var(--muted);
-        font-size: 15px;
-        line-height: 1.9;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .hero-visual {
-        display: grid;
-        gap: 16px;
-      }
-
-      .visual-header {
-        display: grid;
-        grid-template-columns: 1fr 0.72fr;
-        gap: 16px;
-      }
-
-      .diagram-card {
-        border: 1px solid var(--ink);
-        border-radius: 8px;
-        background: #fff;
-      }
-
-      .diagram-card.gray {
-        background: var(--block-soft);
-        border-color: var(--line);
-      }
-
-      .dashboard {
-        padding: 22px;
-      }
-
-      .dash-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-        padding-bottom: 18px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .dash-title {
-        font-size: 13px;
-        font-weight: 900;
-      }
-
-      .dash-date {
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      .score-box {
-        display: grid;
-        width: 70px;
-        height: 70px;
-        place-items: center;
-        border: 2px solid var(--accent);
-        border-radius: 8px;
-        color: var(--accent);
-        font-size: 24px;
-        font-weight: 900;
-      }
-
-      .score-box small {
-        display: block;
-        color: var(--muted);
-        font-size: 10px;
-        font-weight: 700;
-      }
-
-      .lead-list {
-        display: grid;
-        gap: 10px;
-        padding-top: 16px;
-      }
-
-      .lead-row {
-        display: grid;
-        grid-template-columns: 28px 1fr auto;
-        gap: 12px;
-        align-items: center;
-        padding: 12px;
-        background: var(--block-soft);
-        border-radius: 8px;
-      }
-
-      .line-icon {
-        display: grid;
-        width: 28px;
-        height: 28px;
-        place-items: center;
-        border: 1.5px solid var(--ink);
-        border-radius: 50%;
-      }
-
-      .line-icon svg {
-        width: 15px;
-        height: 15px;
-        stroke: currentColor;
-        stroke-width: 2;
-        fill: none;
-      }
-
-      .lead-row strong {
-        display: block;
-        margin-bottom: 3px;
-        font-size: 14px;
-      }
-
-      .lead-row span {
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      .status {
-        padding: 5px 8px;
-        color: #fff;
-        background: var(--accent);
-        border-radius: 999px;
-        font-size: 11px;
-        font-weight: 900;
-      }
-
-      .stats-card {
-        display: grid;
-        gap: 16px;
-        padding: 22px;
-      }
-
-      .big-number {
-        color: var(--accent);
-        font-size: 56px;
-        font-weight: 900;
-        line-height: 1;
-        letter-spacing: -0.04em;
-      }
-
-      .stats-card p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.7;
-      }
-
-      .pipeline {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-      }
-
-      .pipe-item {
-        min-height: 126px;
-        padding: 16px;
-        background: var(--block);
-        border-radius: 8px;
-      }
-
-      .pipe-item b {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 28px;
-      }
-
-      .pipe-item span {
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 700;
-      }
-
-      .section-head {
-        display: grid;
-        grid-template-columns: 0.78fr 1fr;
-        gap: 56px;
-        align-items: end;
-        margin-bottom: 44px;
-      }
-
-      .kicker {
-        margin-bottom: 14px;
-        color: var(--accent);
-        font-size: 13px;
-        font-weight: 900;
-      }
-
-      h2 {
-        margin-bottom: 0;
-        font-size: clamp(34px, 5vw, 64px);
-        line-height: 1.08;
-        letter-spacing: -0.05em;
-      }
-
-      .section-head p {
-        margin-bottom: 0;
-        color: var(--muted);
-        font-size: 15px;
-        line-height: 1.95;
-      }
-
-      .problem-grid,
-      .product-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-
-      .info-card {
-        min-height: 250px;
-        padding: 26px;
-        background: var(--block-soft);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-
-      .info-card.featured {
-        background: var(--ink);
-        border-color: var(--ink);
-        color: #fff;
-      }
-
-      .info-card.featured p,
-      .info-card.featured .card-number {
-        color: rgba(255, 255, 255, 0.72);
-      }
-
-      .card-number {
-        display: block;
-        margin-bottom: 48px;
-        color: var(--accent);
-        font-size: 54px;
-        font-weight: 900;
-        line-height: 1;
-        letter-spacing: -0.06em;
-      }
-
-      .info-card h3 {
-        margin-bottom: 14px;
-        font-size: 22px;
-        line-height: 1.35;
-      }
-
-      .info-card p {
-        margin-bottom: 0;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.8;
-      }
-
-      .product-card {
-        position: relative;
-        min-height: 280px;
-        padding: 26px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-
-      .product-icon {
-        display: grid;
-        width: 52px;
-        height: 52px;
-        place-items: center;
-        margin-bottom: 42px;
-        border: 1.5px solid var(--ink);
-        border-radius: 8px;
-      }
-
-      .product-icon svg {
-        width: 28px;
-        height: 28px;
-        stroke: currentColor;
-        stroke-width: 1.7;
-        fill: none;
-      }
-
-      .product-card::after {
-        position: absolute;
-        right: 26px;
-        bottom: 26px;
-        width: 44px;
-        height: 4px;
-        content: "";
-        background: var(--accent);
-      }
-
-      .workflow {
-        display: grid;
-        gap: 0;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        overflow: hidden;
-      }
-
-      .workflow-row {
-        display: grid;
-        grid-template-columns: 100px 0.65fr 1fr;
-        gap: 26px;
-        align-items: center;
-        min-height: 128px;
-        padding: 24px;
-        background: #fff;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .workflow-row:last-child {
-        border-bottom: 0;
-      }
-
-      .step-no {
-        color: var(--accent);
-        font-size: 38px;
-        font-weight: 900;
-        letter-spacing: -0.05em;
-      }
-
-      .workflow-row h3 {
-        margin-bottom: 0;
-        font-size: 24px;
-      }
-
-      .workflow-row p {
-        margin-bottom: 0;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.85;
-      }
-
-      .cta-section {
-        width: min(1180px, calc(100% - 48px));
-        margin: 0 auto;
-        padding: 96px 0 40px;
-      }
-
-      .cta-box {
-        display: grid;
-        grid-template-columns: 0.85fr 1fr;
-        gap: 44px;
-        padding: 42px;
-        background: var(--block-soft);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-
-      .cta-box h2 {
-        margin-bottom: 22px;
-      }
-
-      .cta-box p {
-        max-width: 520px;
-        color: var(--muted);
-        line-height: 1.9;
-      }
-
-      .waitlist-form {
-        display: grid;
-        gap: 14px;
-        padding: 24px;
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-
-      .field {
-        display: grid;
-        gap: 7px;
-      }
-
-      .field label {
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 900;
-      }
-
-      .field input,
-      .field select,
-      .field textarea {
-        width: 100%;
-        min-height: 44px;
-        padding: 11px 12px;
-        color: var(--ink);
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        outline: none;
-        font-size: 14px;
-      }
-
-      .field input:focus,
-      .field select:focus,
-      .field textarea:focus {
-        border-color: var(--accent);
-      }
-
-      .field textarea {
-        min-height: 90px;
-        resize: vertical;
-      }
-
-      .submit-button {
-        min-height: 48px;
-        color: #fff;
-        background: var(--accent);
-        border: 0;
-        border-radius: 6px;
-        font-weight: 900;
-        cursor: pointer;
-      }
-
-      .form-success {
-        display: none;
-        margin: 0;
-        padding: 12px;
-        color: var(--ink);
-        background: #fff2ef;
-        border: 1px solid #ffd4cc;
-        border-radius: 6px;
-        font-size: 13px;
-        line-height: 1.6;
-      }
-
-      .waitlist-form.is-submitted .form-success {
-        display: block;
-      }
-
-      .form-note {
-        margin: 0;
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.6;
-      }
-
-      .tally-frame {
-        width: 100%;
-        min-height: 560px;
-        border: 0;
-        border-radius: 6px;
-      }
-
-      .tally-placeholder {
-        display: grid;
-        min-height: 520px;
-        place-items: center;
-        padding: 24px;
-        background: #fff;
-        border: 1px dashed var(--line);
-        border-radius: 6px;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.8;
-        text-align: center;
-      }
-
-      footer {
-        width: min(1180px, calc(100% - 48px));
-        margin: 0 auto;
-        padding: 28px 0 44px;
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      @media (max-width: 960px) {
-        .hero-grid,
-        .section-head,
-        .cta-box {
-          grid-template-columns: 1fr;
-        }
-
-        .visual-header,
-        .problem-grid,
-        .product-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .workflow-row {
-          grid-template-columns: 72px 1fr;
-        }
-
-        .workflow-row p {
-          grid-column: 2;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .nav {
-          height: 64px;
-          padding: 0 18px;
-        }
-
-        .nav-links a:not(.nav-cta) {
-          display: none;
-        }
-
-        .nav-links {
-          gap: 12px;
-        }
-
-        .hero,
-        .section,
-        .cta-section,
-        footer {
-          width: min(100% - 32px, 1180px);
-        }
-
-        .hero {
-          min-height: auto;
-          padding: 54px 0 64px;
-        }
-
-        .hero-grid {
-          grid-template-columns: 1fr;
-          gap: 36px;
-        }
-
-        h1 {
-          font-size: clamp(52px, 18vw, 82px);
-        }
-
-        .hero-actions,
-        .form-row {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-actions {
-          display: grid;
-        }
-
-        .button,
-        .nav-cta {
-          width: 100%;
-        }
-
-        .pipeline {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .section {
-          padding: 64px 0;
-        }
-
-        .info-card,
-        .product-card {
-          min-height: 220px;
-        }
-
-        .workflow-row {
-          grid-template-columns: 1fr;
-          gap: 12px;
-        }
-
-        .workflow-row p {
-          grid-column: auto;
-        }
-
-        .cta-section {
-          padding-top: 64px;
-        }
-
-        .cta-box {
-          padding: 22px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page">
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="logo" href="#top">sumika <span>ai</span></a>
-        <div class="nav-links">
-          <a href="#problem">Problem</a>
-          <a href="#product">Product</a>
-          <a href="#workflow">Workflow</a>
-          <a class="nav-cta" href="#contact" data-track="cta" data-location="nav">無料診断</a>
-        </div>
-      </nav>
-
-      <header id="top" class="hero">
-        <div class="hero-grid">
-          <div>
-            <div class="eyebrow">AI Follow-up Agent for Real Estate Sales</div>
-            <h1>Sumika ai</h1>
-            <p class="hero-lead">
-              不動産営業の追客漏れを減らし、毎日の「次に連絡すべき顧客」を明確にする。
-            </p>
-            <p class="hero-sub">
-              反響内容を整理し、予算・エリア・希望条件に合わせたフォロー文面を生成。
-              営業担当者の経験に依存しすぎない、見える追客フローをつくります。
-            </p>
-            <div class="hero-actions">
-              <a class="button" href="#contact" data-track="cta" data-location="hero">無料診断 Waitlist</a>
-              <a class="button secondary" href="#product" data-track="cta" data-location="hero_dashboard">Product dashboard</a>
-            </div>
-          </div>
-
-          <div class="hero-visual" aria-label="Sumika ai product dashboard image">
-            <div class="visual-header">
-              <div class="diagram-card dashboard">
-                <div class="dash-top">
-                  <div>
-                    <div class="dash-title">Today's Follow-up List</div>
-                    <div class="dash-date">2026.05.29 / Tokyo team</div>
-                  </div>
-                  <div class="score-box">78<small>score</small></div>
+        </script>
+        <script>
+            if (
+                window.SUMIKA_CONFIG.posthogKey &&
+                window.SUMIKA_CONFIG.posthogKey !== "phc_uMw9F4xmw4FrzajprdSRYodaarZ856fpEHt4ZQGfFaBL"
+            ) {
+                !(function(t, e) {
+                    var o, n, p, r;
+                    e.__SV ||
+                        ((window.posthog = e),
+                            (e._i = []),
+                            (e.init = function(i, s, a) {
+                                function g(t, e) {
+                                    var o = e.split(".");
+                                    2 == o.length && ((t = t[o[0]]), (e = o[1]));
+                                    t[e] = function() {
+                                        t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                                    };
+                                }
+                                ((p = t.createElement("script")).type = "text/javascript"),
+                                (p.crossOrigin = "anonymous"),
+                                (p.async = !0),
+                                (p.src =
+                                    (s.api_host || "https://app.posthog.com") +
+                                    "/static/array.js"),
+                                (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+                                    p,
+                                    r,
+                                );
+                                var u = e;
+                                for (
+                                    void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+                                    u.people = u.people || [],
+                                    u.toString = function(t) {
+                                        var e = "posthog";
+                                        return (
+                                            "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e
+                                        );
+                                    },
+                                    u.people.toString = function() {
+                                        return u.toString(1) + ".people (stub)";
+                                    },
+                                    o =
+                                    "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags reloadFeatureFlags getFeatureFlag getFeatureFlagPayload group".split(
+                                        " ",
+                                    ),
+                                    n = 0; n < o.length; n++
+                                )
+                                    g(u, o[n]);
+                                e._i.push([i, s, a]);
+                            }),
+                            (e.__SV = 1));
+                })(document, window.posthog || []);
+
+                posthog.init(window.SUMIKA_CONFIG.posthogKey, {
+                    api_host: window.SUMIKA_CONFIG.posthogHost,
+                    person_profiles: "identified_only",
+                });
+            }
+        </script>
+        <script>
+            if (
+                window.SUMIKA_CONFIG.clarityProjectId &&
+                window.SUMIKA_CONFIG.clarityProjectId !== "YOUR_CLARITY_PROJECT_ID"
+            ) {
+                (function(c, l, a, r, i, t, y) {
+                    c[a] =
+                        c[a] ||
+                        function() {
+                            (c[a].q = c[a].q || []).push(arguments);
+                        };
+                    t = l.createElement(r);
+                    t.async = 1;
+                    t.src = "https://www.clarity.ms/tag/" + i;
+                    y = l.getElementsByTagName(r)[0];
+                    y.parentNode.insertBefore(t, y);
+                })(
+                    window,
+                    document,
+                    "clarity",
+                    "script",
+                    window.SUMIKA_CONFIG.clarityProjectId,
+                );
+            }
+        </script>
+        <style>
+             :root {
+                --bg: #ffffff;
+                --ink: #333333;
+                --muted: #6f6f6f;
+                --line: #d9d9d9;
+                --block: #e8e8e8;
+                --block-soft: #f5f5f5;
+                --accent: #f9604d;
+            }
+            
+            * {
+                box-sizing: border-box;
+            }
+            
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            body {
+                margin: 0;
+                color: var(--ink);
+                background: var(--bg);
+                font-family: "Noto Sans JP", "Source Han Sans", "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
+                letter-spacing: 0;
+            }
+            
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+            
+            button,
+            input,
+            select,
+            textarea {
+                font: inherit;
+            }
+            
+            .page {
+                overflow: hidden;
+            }
+            
+            .nav {
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 72px;
+                padding: 0 max(28px, calc((100vw - 1180px) / 2));
+                background: rgba(255, 255, 255, 0.94);
+                border-bottom: 1px solid var(--line);
+                backdrop-filter: blur(12px);
+            }
+            
+            .logo {
+                font-size: 22px;
+                font-weight: 800;
+                letter-spacing: -0.02em;
+                text-transform: lowercase;
+            }
+            
+            .logo span {
+                color: var(--accent);
+            }
+            
+            .nav-links {
+                display: flex;
+                align-items: center;
+                gap: 28px;
+                color: var(--muted);
+                font-size: 14px;
+                font-weight: 700;
+            }
+            
+            .nav-cta,
+            .button {
+                display: inline-flex;
+                min-height: 44px;
+                align-items: center;
+                justify-content: center;
+                padding: 0 20px;
+                color: #fff;
+                background: var(--accent);
+                border: 1px solid var(--accent);
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: 800;
+                cursor: pointer;
+            }
+            
+            .button.secondary {
+                color: var(--ink);
+                background: #fff;
+                border-color: var(--ink);
+            }
+            
+            .section {
+                width: min(1180px, calc(100% - 48px));
+                margin: 0 auto;
+                padding: 96px 0;
+                border-bottom: 1px solid var(--line);
+            }
+            
+            .hero {
+                width: min(1180px, calc(100% - 48px));
+                min-height: calc(100svh - 72px);
+                margin: 0 auto;
+                padding: 72px 0 80px;
+                border-bottom: 1px solid var(--line);
+            }
+            
+            .hero-grid {
+                display: grid;
+                grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+                gap: 56px;
+                align-items: center;
+            }
+            
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 28px;
+                color: var(--accent);
+                font-size: 13px;
+                font-weight: 900;
+            }
+            
+            .eyebrow::before {
+                width: 42px;
+                height: 2px;
+                content: "";
+                background: var(--accent);
+            }
+            
+            h1,
+            h2,
+            h3,
+            p {
+                margin-top: 0;
+            }
+            
+            h1 {
+                max-width: 620px;
+                margin-bottom: 28px;
+                font-size: clamp(56px, 8vw, 116px);
+                line-height: 0.95;
+                letter-spacing: -0.06em;
+            }
+            
+            .hero-lead {
+                max-width: 560px;
+                margin-bottom: 34px;
+                color: var(--ink);
+                font-size: clamp(18px, 2vw, 24px);
+                font-weight: 700;
+                line-height: 1.75;
+            }
+            
+            .hero-sub {
+                max-width: 540px;
+                margin-bottom: 34px;
+                color: var(--muted);
+                font-size: 15px;
+                line-height: 1.9;
+            }
+            
+            .hero-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            
+            .hero-visual {
+                display: grid;
+                gap: 16px;
+            }
+            
+            .visual-header {
+                display: grid;
+                grid-template-columns: 1fr 0.72fr;
+                gap: 16px;
+            }
+            
+            .diagram-card {
+                border: 1px solid var(--ink);
+                border-radius: 8px;
+                background: #fff;
+            }
+            
+            .diagram-card.gray {
+                background: var(--block-soft);
+                border-color: var(--line);
+            }
+            
+            .dashboard {
+                padding: 22px;
+            }
+            
+            .dash-top {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 18px;
+                padding-bottom: 18px;
+                border-bottom: 1px solid var(--line);
+            }
+            
+            .dash-title {
+                font-size: 13px;
+                font-weight: 900;
+            }
+            
+            .dash-date {
+                color: var(--muted);
+                font-size: 12px;
+            }
+            
+            .score-box {
+                display: grid;
+                width: 70px;
+                height: 70px;
+                place-items: center;
+                border: 2px solid var(--accent);
+                border-radius: 8px;
+                color: var(--accent);
+                font-size: 24px;
+                font-weight: 900;
+            }
+            
+            .score-box small {
+                display: block;
+                color: var(--muted);
+                font-size: 10px;
+                font-weight: 700;
+            }
+            
+            .lead-list {
+                display: grid;
+                gap: 10px;
+                padding-top: 16px;
+            }
+            
+            .lead-row {
+                display: grid;
+                grid-template-columns: 28px 1fr auto;
+                gap: 12px;
+                align-items: center;
+                padding: 12px;
+                background: var(--block-soft);
+                border-radius: 8px;
+            }
+            
+            .line-icon {
+                display: grid;
+                width: 28px;
+                height: 28px;
+                place-items: center;
+                border: 1.5px solid var(--ink);
+                border-radius: 50%;
+            }
+            
+            .line-icon svg {
+                width: 15px;
+                height: 15px;
+                stroke: currentColor;
+                stroke-width: 2;
+                fill: none;
+            }
+            
+            .lead-row strong {
+                display: block;
+                margin-bottom: 3px;
+                font-size: 14px;
+            }
+            
+            .lead-row span {
+                color: var(--muted);
+                font-size: 12px;
+            }
+            
+            .status {
+                padding: 5px 8px;
+                color: #fff;
+                background: var(--accent);
+                border-radius: 999px;
+                font-size: 11px;
+                font-weight: 900;
+            }
+            
+            .stats-card {
+                display: grid;
+                gap: 16px;
+                padding: 22px;
+            }
+            
+            .big-number {
+                color: var(--accent);
+                font-size: 56px;
+                font-weight: 900;
+                line-height: 1;
+                letter-spacing: -0.04em;
+            }
+            
+            .stats-card p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 13px;
+                line-height: 1.7;
+            }
+            
+            .pipeline {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+            
+            .pipe-item {
+                min-height: 126px;
+                padding: 16px;
+                background: var(--block);
+                border-radius: 8px;
+            }
+            
+            .pipe-item b {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 28px;
+            }
+            
+            .pipe-item span {
+                color: var(--muted);
+                font-size: 12px;
+                font-weight: 700;
+            }
+            
+            .section-head {
+                display: grid;
+                grid-template-columns: 0.78fr 1fr;
+                gap: 56px;
+                align-items: end;
+                margin-bottom: 44px;
+            }
+            
+            .kicker {
+                margin-bottom: 14px;
+                color: var(--accent);
+                font-size: 13px;
+                font-weight: 900;
+            }
+            
+            h2 {
+                margin-bottom: 0;
+                font-size: clamp(34px, 5vw, 64px);
+                line-height: 1.08;
+                letter-spacing: -0.05em;
+            }
+            
+            .section-head p {
+                margin-bottom: 0;
+                color: var(--muted);
+                font-size: 15px;
+                line-height: 1.95;
+            }
+            
+            .problem-grid,
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+            
+            .info-card {
+                min-height: 250px;
+                padding: 26px;
+                background: var(--block-soft);
+                border: 1px solid var(--line);
+                border-radius: 8px;
+            }
+            
+            .info-card.featured {
+                background: var(--ink);
+                border-color: var(--ink);
+                color: #fff;
+            }
+            
+            .info-card.featured p,
+            .info-card.featured .card-number {
+                color: rgba(255, 255, 255, 0.72);
+            }
+            
+            .card-number {
+                display: block;
+                margin-bottom: 48px;
+                color: var(--accent);
+                font-size: 54px;
+                font-weight: 900;
+                line-height: 1;
+                letter-spacing: -0.06em;
+            }
+            
+            .info-card h3 {
+                margin-bottom: 14px;
+                font-size: 22px;
+                line-height: 1.35;
+            }
+            
+            .info-card p {
+                margin-bottom: 0;
+                color: var(--muted);
+                font-size: 14px;
+                line-height: 1.8;
+            }
+            
+            .product-card {
+                position: relative;
+                min-height: 280px;
+                padding: 26px;
+                border: 1px solid var(--line);
+                border-radius: 8px;
+            }
+            
+            .product-icon {
+                display: grid;
+                width: 52px;
+                height: 52px;
+                place-items: center;
+                margin-bottom: 42px;
+                border: 1.5px solid var(--ink);
+                border-radius: 8px;
+            }
+            
+            .product-icon svg {
+                width: 28px;
+                height: 28px;
+                stroke: currentColor;
+                stroke-width: 1.7;
+                fill: none;
+            }
+            
+            .product-card::after {
+                position: absolute;
+                right: 26px;
+                bottom: 26px;
+                width: 44px;
+                height: 4px;
+                content: "";
+                background: var(--accent);
+            }
+            
+            .workflow {
+                display: grid;
+                gap: 0;
+                border: 1px solid var(--line);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            .workflow-row {
+                display: grid;
+                grid-template-columns: 100px 0.65fr 1fr;
+                gap: 26px;
+                align-items: center;
+                min-height: 128px;
+                padding: 24px;
+                background: #fff;
+                border-bottom: 1px solid var(--line);
+            }
+            
+            .workflow-row:last-child {
+                border-bottom: 0;
+            }
+            
+            .step-no {
+                color: var(--accent);
+                font-size: 38px;
+                font-weight: 900;
+                letter-spacing: -0.05em;
+            }
+            
+            .workflow-row h3 {
+                margin-bottom: 0;
+                font-size: 24px;
+            }
+            
+            .workflow-row p {
+                margin-bottom: 0;
+                color: var(--muted);
+                font-size: 14px;
+                line-height: 1.85;
+            }
+            
+            .cta-section {
+                width: min(1180px, calc(100% - 48px));
+                margin: 0 auto;
+                padding: 96px 0 40px;
+            }
+            
+            .cta-box {
+                display: grid;
+                grid-template-columns: 0.85fr 1fr;
+                gap: 44px;
+                padding: 42px;
+                background: var(--block-soft);
+                border: 1px solid var(--line);
+                border-radius: 8px;
+            }
+            
+            .cta-box h2 {
+                margin-bottom: 22px;
+            }
+            
+            .cta-box p {
+                max-width: 520px;
+                color: var(--muted);
+                line-height: 1.9;
+            }
+            
+            .waitlist-form {
+                display: grid;
+                gap: 14px;
+                padding: 24px;
+                background: #fff;
+                border: 1px solid var(--line);
+                border-radius: 8px;
+            }
+            
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            
+            .field {
+                display: grid;
+                gap: 7px;
+            }
+            
+            .field label {
+                color: var(--muted);
+                font-size: 12px;
+                font-weight: 900;
+            }
+            
+            .field input,
+            .field select,
+            .field textarea {
+                width: 100%;
+                min-height: 44px;
+                padding: 11px 12px;
+                color: var(--ink);
+                background: #fff;
+                border: 1px solid var(--line);
+                border-radius: 6px;
+                outline: none;
+                font-size: 14px;
+            }
+            
+            .field input:focus,
+            .field select:focus,
+            .field textarea:focus {
+                border-color: var(--accent);
+            }
+            
+            .field textarea {
+                min-height: 90px;
+                resize: vertical;
+            }
+            
+            .submit-button {
+                min-height: 48px;
+                color: #fff;
+                background: var(--accent);
+                border: 0;
+                border-radius: 6px;
+                font-weight: 900;
+                cursor: pointer;
+            }
+            
+            .form-success {
+                display: none;
+                margin: 0;
+                padding: 12px;
+                color: var(--ink);
+                background: #fff2ef;
+                border: 1px solid #ffd4cc;
+                border-radius: 6px;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+            
+            .waitlist-form.is-submitted .form-success {
+                display: block;
+            }
+            
+            .form-note {
+                margin: 0;
+                color: var(--muted);
+                font-size: 12px;
+                line-height: 1.6;
+            }
+            
+            .tally-frame {
+                width: 100%;
+                min-height: 560px;
+                border: 0;
+                border-radius: 6px;
+            }
+            
+            .tally-placeholder {
+                display: grid;
+                min-height: 520px;
+                place-items: center;
+                padding: 24px;
+                background: #fff;
+                border: 1px dashed var(--line);
+                border-radius: 6px;
+                color: var(--muted);
+                font-size: 14px;
+                line-height: 1.8;
+                text-align: center;
+            }
+            
+            footer {
+                width: min(1180px, calc(100% - 48px));
+                margin: 0 auto;
+                padding: 28px 0 44px;
+                color: var(--muted);
+                font-size: 12px;
+            }
+            
+            @media (max-width: 960px) {
+                .hero-grid,
+                .section-head,
+                .cta-box {
+                    grid-template-columns: 1fr;
+                }
+                .visual-header,
+                .problem-grid,
+                .product-grid {
+                    grid-template-columns: 1fr;
+                }
+                .workflow-row {
+                    grid-template-columns: 72px 1fr;
+                }
+                .workflow-row p {
+                    grid-column: 2;
+                }
+            }
+            
+            @media (max-width: 640px) {
+                .nav {
+                    height: 64px;
+                    padding: 0 18px;
+                }
+                .nav-links a:not(.nav-cta) {
+                    display: none;
+                }
+                .nav-links {
+                    gap: 12px;
+                }
+                .hero,
+                .section,
+                .cta-section,
+                footer {
+                    width: min(100% - 32px, 1180px);
+                }
+                .hero {
+                    min-height: auto;
+                    padding: 54px 0 64px;
+                }
+                .hero-grid {
+                    grid-template-columns: 1fr;
+                    gap: 36px;
+                }
+                h1 {
+                    font-size: clamp(52px, 18vw, 82px);
+                }
+                .hero-actions,
+                .form-row {
+                    grid-template-columns: 1fr;
+                }
+                .hero-actions {
+                    display: grid;
+                }
+                .button,
+                .nav-cta {
+                    width: 100%;
+                }
+                .pipeline {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .section {
+                    padding: 64px 0;
+                }
+                .info-card,
+                .product-card {
+                    min-height: 220px;
+                }
+                .workflow-row {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                }
+                .workflow-row p {
+                    grid-column: auto;
+                }
+                .cta-section {
+                    padding-top: 64px;
+                }
+                .cta-box {
+                    padding: 22px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="page">
+            <nav class="nav" aria-label="Primary navigation">
+                <a class="logo" href="#top">sumika <span>ai</span></a>
+                <div class="nav-links">
+                    <a href="#problem">Problem</a>
+                    <a href="#product">Product</a>
+                    <a href="#workflow">Workflow</a>
+                    <a class="nav-cta" href="#contact" data-track="cta" data-location="nav">無料診断</a>
                 </div>
-                <div class="lead-list">
-                  <div class="lead-row">
-                    <span class="line-icon">
+            </nav>
+
+            <header id="top" class="hero">
+                <div class="hero-grid">
+                    <div>
+                        <div class="eyebrow">AI Follow-up Agent for Real Estate Sales</div>
+                        <h1>Sumika ai</h1>
+                        <p class="hero-lead">
+                            不動産営業の追客漏れを減らし、毎日の「次に連絡すべき顧客」を明確にする。
+                        </p>
+                        <p class="hero-sub">
+                            反響内容を整理し、予算・エリア・希望条件に合わせたフォロー文面を生成。 営業担当者の経験に依存しすぎない、見える追客フローをつくります。
+                        </p>
+                        <div class="hero-actions">
+                            <a class="button" href="#contact" data-track="cta" data-location="hero">無料診断 Waitlist</a>
+                            <a class="button secondary" href="#product" data-track="cta" data-location="hero_dashboard">Product dashboard</a>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual" aria-label="Sumika ai product dashboard image">
+                        <div class="visual-header">
+                            <div class="diagram-card dashboard">
+                                <div class="dash-top">
+                                    <div>
+                                        <div class="dash-title">Today's Follow-up List</div>
+                                        <div class="dash-date">2026.05.29 / Tokyo team</div>
+                                    </div>
+                                    <div class="score-box">78<small>score</small></div>
+                                </div>
+                                <div class="lead-list">
+                                    <div class="lead-row">
+                                        <span class="line-icon">
                       <svg viewBox="0 0 24 24"><path d="M4 19V5h16v10H8l-4 4Z" /></svg>
                     </span>
-                    <div><strong>中村様・2LDK / 予算 18万円</strong><span>恵比寿・中目黒希望 / 昨夜LINE返信</span></div>
-                    <span class="status">即対応</span>
-                  </div>
-                  <div class="lead-row">
-                    <span class="line-icon">
+                                        <div><strong>中村様・2LDK / 予算 18万円</strong><span>恵比寿・中目黒希望 / 昨夜LINE返信</span></div>
+                                        <span class="status">即対応</span>
+                                    </div>
+                                    <div class="lead-row">
+                                        <span class="line-icon">
                       <svg viewBox="0 0 24 24"><path d="M12 3 3 10h3v10h12V10h3L12 3Z" /></svg>
                     </span>
-                    <div><strong>佐藤様・新築マンション購入</strong><span>ローン相談後 / 週末内見候補</span></div>
-                    <span class="status">高</span>
-                  </div>
-                  <div class="lead-row">
-                    <span class="line-icon">
+                                        <div><strong>佐藤様・新築マンション購入</strong><span>ローン相談後 / 週末内見候補</span></div>
+                                        <span class="status">高</span>
+                                    </div>
+                                    <div class="lead-row">
+                                        <span class="line-icon">
                       <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16" /></svg>
                     </span>
-                    <div><strong>林様・福岡移住</strong><span>条件変更あり / 予算再確認</span></div>
-                    <span class="status">中</span>
-                  </div>
+                                        <div><strong>林様・福岡移住</strong><span>条件変更あり / 予算再確認</span></div>
+                                        <span class="status">中</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="diagram-card gray stats-card">
+                                <div class="big-number">12</div>
+                                <p>本日連絡すべき見込み客。返信履歴、希望条件、停滞日数から優先度を整理。</p>
+                            </div>
+                        </div>
+
+                        <div class="pipeline">
+                            <div class="pipe-item"><b>42</b><span>新規反響</span></div>
+                            <div class="pipe-item"><b>18</b><span>追客中</span></div>
+                            <div class="pipe-item"><b>9</b><span>内見調整</span></div>
+                            <div class="pipe-item"><b>4</b><span>申込見込</span></div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="diagram-card gray stats-card">
-                <div class="big-number">12</div>
-                <p>本日連絡すべき見込み客。返信履歴、希望条件、停滞日数から優先度を整理。</p>
-              </div>
-            </div>
+            </header>
 
-            <div class="pipeline">
-              <div class="pipe-item"><b>42</b><span>新規反響</span></div>
-              <div class="pipe-item"><b>18</b><span>追客中</span></div>
-              <div class="pipe-item"><b>9</b><span>内見調整</span></div>
-              <div class="pipe-item"><b>4</b><span>申込見込</span></div>
-            </div>
-          </div>
+            <main>
+                <section id="problem" class="section">
+                    <div class="section-head">
+                        <div>
+                            <p class="kicker">Problem / Why this service</p>
+                            <h2>反響はある。追客の状態が見えない。</h2>
+                        </div>
+                        <p>
+                            日本の中小不動産会社では、LINE、メール、ポータル反響、電話メモが分散しがちです。 担当者ごとの経験に依存し、返信待ちや内見後フォローが漏れることで成約機会を失います。
+                        </p>
+                    </div>
+
+                    <div class="problem-grid">
+                        <article class="info-card featured">
+                            <span class="card-number">01</span>
+                            <h3>フォロー漏れ</h3>
+                            <p>顧客からの返信後、次の一手が遅れる。温度感の高い顧客ほど機会損失が大きくなります。</p>
+                        </article>
+                        <article class="info-card">
+                            <span class="card-number">02</span>
+                            <h3>記録が分散</h3>
+                            <p>LINE、メール、電話メモ、ポータル反響が別々に残り、営業会議前に状況を把握しにくい。</p>
+                        </article>
+                        <article class="info-card">
+                            <span class="card-number">03</span>
+                            <h3>判断が属人化</h3>
+                            <p>誰に、いつ、どんな文面で連絡するかが担当者の経験に依存し、再現性が低くなります。</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="product" class="section">
+                    <div class="section-head">
+                        <div>
+                            <p class="kicker">Product</p>
+                            <h2>営業が迷う前に、次の一手を出す。</h2>
+                        </div>
+                        <p>
+                            Sumika ai は既存の営業フローに入り、反響整理、追客文面、優先順位、成約確度を一つの画面にまとめます。
+                        </p>
+                    </div>
+
+                    <div class="product-grid">
+                        <article class="product-card">
+                            <div class="product-icon">
+                                <svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10" /></svg>
+                            </div>
+                            <h3>問い合わせ要約</h3>
+                            <p>予算、希望エリア、入居時期、NG条件を営業用メモとして自動整理。</p>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-icon">
+                                <svg viewBox="0 0 24 24"><path d="M4 19V5h16v10H9l-5 4Z" /></svg>
+                            </div>
+                            <h3>LINE / メール文面</h3>
+                            <p>顧客の条件と温度感に合わせて、自然な追客メッセージを生成。</p>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-icon">
+                                <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>
+                            </div>
+                            <h3>成約確度スコア</h3>
+                            <p>返信速度、条件一致、内見履歴から、今日の優先順位を提示。</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="workflow" class="section">
+                    <div class="section-head">
+                        <div>
+                            <p class="kicker">Workflow</p>
+                            <h2>既存の営業フローに、静かに入る。</h2>
+                        </div>
+                        <p>
+                            新しいCRMを大きく導入する前に、まずは反響整理と追客リストから始める。 小さく導入し、営業会議で使える数字を増やしていきます。
+                        </p>
+                    </div>
+
+                    <div class="workflow">
+                        <article class="workflow-row">
+                            <div class="step-no">01</div>
+                            <h3>反響を集約</h3>
+                            <p>ポータル、メール、LINE、手入力メモから顧客情報を整理します。</p>
+                        </article>
+                        <article class="workflow-row">
+                            <div class="step-no">02</div>
+                            <h3>条件を理解</h3>
+                            <p>予算、エリア、物件種別、温度感を営業用メモに変換します。</p>
+                        </article>
+                        <article class="workflow-row">
+                            <div class="step-no">03</div>
+                            <h3>追客を提案</h3>
+                            <p>次に送る文面、連絡タイミング、優先順位を自動で出します。</p>
+                        </article>
+                        <article class="workflow-row">
+                            <div class="step-no">04</div>
+                            <h3>進捗を可視化</h3>
+                            <p>停滞案件、担当者別の追客状況、成約見込みを看板で確認します。</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="contact" class="cta-section">
+                    <div class="cta-box">
+                        <div>
+                            <p class="kicker">Waitlist / Diagnosis</p>
+                            <h2>無料診断 Waitlist</h2>
+                            <p>
+                                東京・大阪の不動産会社を中心に、10社限定で追客漏れ診断を実施中です。 既存の反響管理を見せていただき、Sumika ai でどこまで自動化できるかを確認します。
+                            </p>
+                        </div>
+
+                        <div id="waitlist-form" class="waitlist-form">
+                            <div id="tally-embed"></div>
+                            <p class="form-note">
+                                Tally の送信完了後は <strong>/thanks.html</strong> に遷移するように設定してください。 個人情報は Tally 側で管理し、PostHog には送信しません。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer>Sumika ai / AI Follow-up Agent for Real Estate Sales</footer>
         </div>
-      </header>
 
-      <main>
-        <section id="problem" class="section">
-          <div class="section-head">
-            <div>
-              <p class="kicker">Problem / Why this service</p>
-              <h2>反響はある。追客の状態が見えない。</h2>
-            </div>
-            <p>
-              日本の中小不動産会社では、LINE、メール、ポータル反響、電話メモが分散しがちです。
-              担当者ごとの経験に依存し、返信待ちや内見後フォローが漏れることで成約機会を失います。
-            </p>
-          </div>
+        <script>
+            const track = (eventName, properties = {}) => {
+                if (window.posthog && typeof window.posthog.capture === "function") {
+                    window.posthog.capture(eventName, properties);
+                }
+            };
 
-          <div class="problem-grid">
-            <article class="info-card featured">
-              <span class="card-number">01</span>
-              <h3>フォロー漏れ</h3>
-              <p>顧客からの返信後、次の一手が遅れる。温度感の高い顧客ほど機会損失が大きくなります。</p>
-            </article>
-            <article class="info-card">
-              <span class="card-number">02</span>
-              <h3>記録が分散</h3>
-              <p>LINE、メール、電話メモ、ポータル反響が別々に残り、営業会議前に状況を把握しにくい。</p>
-            </article>
-            <article class="info-card">
-              <span class="card-number">03</span>
-              <h3>判断が属人化</h3>
-              <p>誰に、いつ、どんな文面で連絡するかが担当者の経験に依存し、再現性が低くなります。</p>
-            </article>
-          </div>
-        </section>
+            document.querySelectorAll("[data-track='cta']").forEach((element) => {
+                element.addEventListener("click", () => {
+                    track("cta_clicked", {
+                        location: element.dataset.location,
+                        label: element.textContent.trim(),
+                    });
+                });
+            });
 
-        <section id="product" class="section">
-          <div class="section-head">
-            <div>
-              <p class="kicker">Product</p>
-              <h2>営業が迷う前に、次の一手を出す。</h2>
-            </div>
-            <p>
-              Sumika ai は既存の営業フローに入り、反響整理、追客文面、優先順位、成約確度を一つの画面にまとめます。
-            </p>
-          </div>
+            const tallyEmbed = document.querySelector("#tally-embed");
+            const tallyFormId = window.SUMIKA_CONFIG.tallyFormId;
 
-          <div class="product-grid">
-            <article class="product-card">
-              <div class="product-icon">
-                <svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10" /></svg>
-              </div>
-              <h3>問い合わせ要約</h3>
-              <p>予算、希望エリア、入居時期、NG条件を営業用メモとして自動整理。</p>
-            </article>
-            <article class="product-card">
-              <div class="product-icon">
-                <svg viewBox="0 0 24 24"><path d="M4 19V5h16v10H9l-5 4Z" /></svg>
-              </div>
-              <h3>LINE / メール文面</h3>
-              <p>顧客の条件と温度感に合わせて、自然な追客メッセージを生成。</p>
-            </article>
-            <article class="product-card">
-              <div class="product-icon">
-                <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>
-              </div>
-              <h3>成約確度スコア</h3>
-              <p>返信速度、条件一致、内見履歴から、今日の優先順位を提示。</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="workflow" class="section">
-          <div class="section-head">
-            <div>
-              <p class="kicker">Workflow</p>
-              <h2>既存の営業フローに、静かに入る。</h2>
-            </div>
-            <p>
-              新しいCRMを大きく導入する前に、まずは反響整理と追客リストから始める。
-              小さく導入し、営業会議で使える数字を増やしていきます。
-            </p>
-          </div>
-
-          <div class="workflow">
-            <article class="workflow-row">
-              <div class="step-no">01</div>
-              <h3>反響を集約</h3>
-              <p>ポータル、メール、LINE、手入力メモから顧客情報を整理します。</p>
-            </article>
-            <article class="workflow-row">
-              <div class="step-no">02</div>
-              <h3>条件を理解</h3>
-              <p>予算、エリア、物件種別、温度感を営業用メモに変換します。</p>
-            </article>
-            <article class="workflow-row">
-              <div class="step-no">03</div>
-              <h3>追客を提案</h3>
-              <p>次に送る文面、連絡タイミング、優先順位を自動で出します。</p>
-            </article>
-            <article class="workflow-row">
-              <div class="step-no">04</div>
-              <h3>進捗を可視化</h3>
-              <p>停滞案件、担当者別の追客状況、成約見込みを看板で確認します。</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="contact" class="cta-section">
-          <div class="cta-box">
-            <div>
-              <p class="kicker">Waitlist / Diagnosis</p>
-              <h2>無料診断 Waitlist</h2>
-              <p>
-                東京・大阪の不動産会社を中心に、10社限定で追客漏れ診断を実施中です。
-                既存の反響管理を見せていただき、Sumika ai でどこまで自動化できるかを確認します。
-              </p>
-            </div>
-
-            <div id="waitlist-form" class="waitlist-form">
-              <div id="tally-embed"></div>
-              <p class="form-note">
-                Tally の送信完了後は <strong>/thanks.html</strong> に遷移するように設定してください。
-                個人情報は Tally 側で管理し、PostHog には送信しません。
-              </p>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer>Sumika ai / AI Follow-up Agent for Real Estate Sales</footer>
-    </div>
-
-    <script>
-      const track = (eventName, properties = {}) => {
-        if (window.posthog && typeof window.posthog.capture === "function") {
-          window.posthog.capture(eventName, properties);
-        }
-      };
-
-      document.querySelectorAll("[data-track='cta']").forEach((element) => {
-        element.addEventListener("click", () => {
-          track("cta_clicked", {
-            location: element.dataset.location,
-            label: element.textContent.trim(),
-          });
-        });
-      });
-
-      const tallyEmbed = document.querySelector("#tally-embed");
-      const tallyFormId = window.SUMIKA_CONFIG.tallyFormId;
-
-      if (tallyEmbed && tallyFormId && tallyFormId !== "YOUR_TALLY_FORM_ID") {
-        tallyEmbed.innerHTML = `
+            if (tallyEmbed && tallyFormId && tallyFormId !== "YOUR_TALLY_FORM_ID") {
+                tallyEmbed.innerHTML = `
           <iframe
             data-tally-src="https://tally.so/embed/${tallyFormId}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
             loading="lazy"
@@ -1084,34 +1055,52 @@
           </iframe>
         `;
 
-        const tallyScript = document.createElement("script");
-        tallyScript.src = "https://tally.so/widgets/embed.js";
-        tallyScript.async = true;
-        document.body.appendChild(tallyScript);
-      } else if (tallyEmbed) {
-        tallyEmbed.innerHTML = `
+                const tallyScript = document.createElement("script");
+                tallyScript.src = "https://tally.so/widgets/embed.js";
+                tallyScript.async = true;
+                document.body.appendChild(tallyScript);
+            } else if (tallyEmbed) {
+                tallyEmbed.innerHTML = `
           <div class="tally-placeholder">
             Tally form placeholder<br>
             Replace YOUR_TALLY_FORM_ID in window.SUMIKA_CONFIG with your published Tally form ID.
           </div>
         `;
-      }
+            }
 
-      const waitlistSection = document.querySelector("#contact");
-      if (waitlistSection && "IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                track("waitlist_form_viewed");
-                observer.disconnect();
-              }
+            window.addEventListener("message", (event) => {
+                if (typeof event.data !== "string") {
+                    return;
+                }
+
+                if (event.data.includes("Tally.FormSubmitted")) {
+                    track("waitlist_submitted", {
+                        source: "tally_embed",
+                    });
+
+                    window.setTimeout(() => {
+                        window.location.href = "./thanks.html";
+                    }, 600);
+                }
             });
-          },
-          { threshold: 0.35 },
-        );
-        observer.observe(waitlistSection);
-      }
-    </script>
-  </body>
-</html>
+
+            const waitlistSection = document.querySelector("#contact");
+            if (waitlistSection && "IntersectionObserver" in window) {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                track("waitlist_form_viewed");
+                                observer.disconnect();
+                            }
+                        });
+                    }, {
+                        threshold: 0.35
+                    },
+                );
+                observer.observe(waitlistSection);
+            }
+        </script>
+    </body>
+
+    </html>

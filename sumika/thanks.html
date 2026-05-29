@@ -1,210 +1,205 @@
 <!doctype html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Thanks | Sumika ai</title>
-    <meta
-      name="description"
-      content="Thank you for joining the Sumika ai waitlist."
-    />
+    <meta name="description" content="Thank you for joining the Sumika ai waitlist." />
     <script>
-      window.SUMIKA_CONFIG = {
-        posthogKey: "YOUR_POSTHOG_PROJECT_API_KEY",
-        posthogHost: "https://us.i.posthog.com",
-        clarityProjectId: "YOUR_CLARITY_PROJECT_ID",
-      };
+        window.SUMIKA_CONFIG = {
+            posthogKey: "phc_uMw9F4xmw4FrzajprdSRYodaarZ856fpEHt4ZQGfFaBL",
+            posthogHost: "https://us.i.posthog.com",
+            clarityProjectId: "wyp7y04vxt",
+        };
     </script>
     <script>
-      if (
-        window.SUMIKA_CONFIG.posthogKey &&
-        window.SUMIKA_CONFIG.posthogKey !== "YOUR_POSTHOG_PROJECT_API_KEY"
-      ) {
-        !(function (t, e) {
-          var o, n, p, r;
-          e.__SV ||
-            ((window.posthog = e),
-            (e._i = []),
-            (e.init = function (i, s, a) {
-              function g(t, e) {
-                var o = e.split(".");
-                2 == o.length && ((t = t[o[0]]), (e = o[1]));
-                t[e] = function () {
-                  t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
-                };
-              }
-              ((p = t.createElement("script")).type = "text/javascript"),
-                (p.crossOrigin = "anonymous"),
-                (p.async = !0),
-                (p.src =
-                  (s.api_host || "https://app.posthog.com") +
-                  "/static/array.js"),
-                (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
-                  p,
-                  r,
-                );
-              var u = e;
-              for (
-                void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
-                  u.people = u.people || [],
-                  u.toString = function (t) {
-                    var e = "posthog";
-                    return (
-                      "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e
-                    );
-                  },
-                  u.people.toString = function () {
-                    return u.toString(1) + ".people (stub)";
-                  },
-                  o =
-                    "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags reloadFeatureFlags getFeatureFlag getFeatureFlagPayload group".split(
-                      " ",
-                    ),
-                  n = 0;
-                n < o.length;
-                n++
-              )
-                g(u, o[n]);
-              e._i.push([i, s, a]);
-            }),
-            (e.__SV = 1));
-        })(document, window.posthog || []);
+        if (
+            window.SUMIKA_CONFIG.posthogKey &&
+            window.SUMIKA_CONFIG.posthogKey !== "phc_uMw9F4xmw4FrzajprdSRYodaarZ856fpEHt4ZQGfFaBL"
+        ) {
+            !(function(t, e) {
+                var o, n, p, r;
+                e.__SV ||
+                    ((window.posthog = e),
+                        (e._i = []),
+                        (e.init = function(i, s, a) {
+                            function g(t, e) {
+                                var o = e.split(".");
+                                2 == o.length && ((t = t[o[0]]), (e = o[1]));
+                                t[e] = function() {
+                                    t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                                };
+                            }
+                            ((p = t.createElement("script")).type = "text/javascript"),
+                            (p.crossOrigin = "anonymous"),
+                            (p.async = !0),
+                            (p.src =
+                                (s.api_host || "https://app.posthog.com") +
+                                "/static/array.js"),
+                            (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+                                p,
+                                r,
+                            );
+                            var u = e;
+                            for (
+                                void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+                                u.people = u.people || [],
+                                u.toString = function(t) {
+                                    var e = "posthog";
+                                    return (
+                                        "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e
+                                    );
+                                },
+                                u.people.toString = function() {
+                                    return u.toString(1) + ".people (stub)";
+                                },
+                                o =
+                                "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags reloadFeatureFlags getFeatureFlag getFeatureFlagPayload group".split(
+                                    " ",
+                                ),
+                                n = 0; n < o.length; n++
+                            )
+                                g(u, o[n]);
+                            e._i.push([i, s, a]);
+                        }),
+                        (e.__SV = 1));
+            })(document, window.posthog || []);
 
-        posthog.init(window.SUMIKA_CONFIG.posthogKey, {
-          api_host: window.SUMIKA_CONFIG.posthogHost,
-          person_profiles: "identified_only",
-          loaded: function (posthog) {
-            posthog.capture("thanks_page_viewed");
-            posthog.capture("waitlist_submitted");
-          },
-        });
-      }
+            posthog.init(window.SUMIKA_CONFIG.posthogKey, {
+                api_host: window.SUMIKA_CONFIG.posthogHost,
+                person_profiles: "identified_only",
+                loaded: function(posthog) {
+                    posthog.capture("thanks_page_viewed");
+                    posthog.capture("waitlist_submitted");
+                },
+            });
+        }
     </script>
     <script>
-      if (
-        window.SUMIKA_CONFIG.clarityProjectId &&
-        window.SUMIKA_CONFIG.clarityProjectId !== "YOUR_CLARITY_PROJECT_ID"
-      ) {
-        (function (c, l, a, r, i, t, y) {
-          c[a] =
-            c[a] ||
-            function () {
-              (c[a].q = c[a].q || []).push(arguments);
-            };
-          t = l.createElement(r);
-          t.async = 1;
-          t.src = "https://www.clarity.ms/tag/" + i;
-          y = l.getElementsByTagName(r)[0];
-          y.parentNode.insertBefore(t, y);
-        })(
-          window,
-          document,
-          "clarity",
-          "script",
-          window.SUMIKA_CONFIG.clarityProjectId,
-        );
-      }
+        if (
+            window.SUMIKA_CONFIG.clarityProjectId &&
+            window.SUMIKA_CONFIG.clarityProjectId !== "YOUR_CLARITY_PROJECT_ID"
+        ) {
+            (function(c, l, a, r, i, t, y) {
+                c[a] =
+                    c[a] ||
+                    function() {
+                        (c[a].q = c[a].q || []).push(arguments);
+                    };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
+            })(
+                window,
+                document,
+                "clarity",
+                "script",
+                window.SUMIKA_CONFIG.clarityProjectId,
+            );
+        }
     </script>
     <style>
-      :root {
-        --bg: #ffffff;
-        --ink: #333333;
-        --muted: #6f6f6f;
-        --line: #d9d9d9;
-        --block-soft: #f5f5f5;
-        --accent: #f9604d;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        display: grid;
-        min-height: 100svh;
-        margin: 0;
-        place-items: center;
-        color: var(--ink);
-        background: var(--bg);
-        font-family:
-          "Noto Sans JP", "Source Han Sans", "Hiragino Sans", "Helvetica Neue",
-          Arial, sans-serif;
-      }
-
-      main {
-        width: min(980px, calc(100% - 48px));
-        padding: 56px;
-        background: var(--block-soft);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-
-      .logo {
-        margin-bottom: 48px;
-        font-size: 22px;
-        font-weight: 800;
-        text-transform: lowercase;
-      }
-
-      .logo span {
-        color: var(--accent);
-      }
-
-      .kicker {
-        margin: 0 0 16px;
-        color: var(--accent);
-        font-size: 13px;
-        font-weight: 900;
-      }
-
-      h1 {
-        margin: 0 0 24px;
-        font-size: clamp(40px, 6vw, 68px);
-        line-height: 1.08;
-        letter-spacing: -0.04em;
-        word-break: keep-all;
-        line-break: strict;
-      }
-
-      p {
-        margin: 0 0 34px;
-        color: var(--muted);
-        font-size: 16px;
-        line-height: 1.9;
-      }
-
-      a {
-        display: inline-flex;
-        min-height: 44px;
-        align-items: center;
-        justify-content: center;
-        padding: 0 20px;
-        color: #fff;
-        background: var(--accent);
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 800;
-        text-decoration: none;
-      }
-
-      @media (max-width: 640px) {
-        main {
-          width: min(100% - 32px, 980px);
-          padding: 30px;
+         :root {
+            --bg: #ffffff;
+            --ink: #333333;
+            --muted: #6f6f6f;
+            --line: #d9d9d9;
+            --block-soft: #f5f5f5;
+            --accent: #f9604d;
         }
-      }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: grid;
+            min-height: 100svh;
+            margin: 0;
+            place-items: center;
+            color: var(--ink);
+            background: var(--bg);
+            font-family: "Noto Sans JP", "Source Han Sans", "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        main {
+            width: min(980px, calc(100% - 48px));
+            padding: 56px;
+            background: var(--block-soft);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+        }
+        
+        .logo {
+            margin-bottom: 48px;
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: lowercase;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .kicker {
+            margin: 0 0 16px;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 900;
+        }
+        
+        h1 {
+            margin: 0 0 24px;
+            font-size: clamp(40px, 6vw, 68px);
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+            word-break: keep-all;
+            line-break: strict;
+        }
+        
+        p {
+            margin: 0 0 34px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+        
+        a {
+            display: inline-flex;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            color: #fff;
+            background: var(--accent);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 640px) {
+            main {
+                width: min(100% - 32px, 980px);
+                padding: 30px;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <main>
-      <div class="logo">sumika <span>ai</span></div>
-      <p class="kicker">Waitlist received</p>
-      <h1>ありがとうございます。</h1>
-      <p>
-        無料診断 Waitlist への登録を受け付けました。
-        追客漏れ診断の対象企業として確認し、2営業日以内にご連絡します。
-      </p>
-      <a href="./index.html">トップページへ戻る</a>
+        <div class="logo">sumika <span>ai</span></div>
+        <p class="kicker">Waitlist received</p>
+        <h1>ありがとうございます。</h1>
+        <p>
+            無料診断 Waitlist への登録を受け付けました。 追客漏れ診断の対象企業として確認し、2営業日以内にご連絡します。
+        </p>
+        <a href="./index.html">トップページへ戻る</a>
     </main>
-  </body>
+</body>
+
 </html>
