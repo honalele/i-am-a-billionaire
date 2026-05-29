@@ -1000,7 +1000,7 @@
                             </p>
                         </div>
 
-                        <form id="waitlist-form" class="waitlist-form" method="POST">
+                        <form id="waitlist-form" class="waitlist-form" action="https://formspree.io/f/mgoqqvyy" method="POST">
                             <input type="hidden" name="_subject" value="Sumika ai 無料診断 Waitlist" />
                             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display: none" />
 
@@ -1088,7 +1088,7 @@
 
             const waitlistForm = document.querySelector("#waitlist-form");
             const formStatus = document.querySelector("#form-status");
-            const submitButton = waitlistForm ? .querySelector(".submit-button");
+            const submitButton = waitlistForm?.querySelector(".submit-button");
 
             const showFormStatus = (message, type) => {
                 if (!formStatus) {
@@ -1099,7 +1099,7 @@
                 formStatus.className = `form-status ${type} is-visible`;
             };
 
-            waitlistForm ? .addEventListener("submit", async(event) => {
+            waitlistForm?.addEventListener("submit", async (event) => {
                 event.preventDefault();
 
                 const endpoint = window.SUMIKA_CONFIG.formspreeEndpoint;
