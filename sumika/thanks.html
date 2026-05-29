@@ -132,7 +132,7 @@
       }
 
       main {
-        width: min(780px, calc(100% - 48px));
+        width: min(980px, calc(100% - 48px));
         padding: 56px;
         background: var(--block-soft);
         border: 1px solid var(--line);
@@ -159,9 +159,11 @@
 
       h1 {
         margin: 0 0 24px;
-        font-size: clamp(40px, 8vw, 76px);
-        line-height: 1;
-        letter-spacing: -0.05em;
+        font-size: clamp(40px, 6vw, 68px);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+        word-break: keep-all;
+        line-break: strict;
       }
 
       p {
@@ -187,7 +189,7 @@
 
       @media (max-width: 640px) {
         main {
-          width: min(100% - 32px, 780px);
+          width: min(100% - 32px, 980px);
           padding: 30px;
         }
       }
