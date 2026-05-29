@@ -11,7 +11,7 @@
                 posthogKey: "phc_uMw9F4xmw4FrzajprdSRYodaarZ856fpEHt4ZQGfFaBL",
                 posthogHost: "https://us.i.posthog.com",
                 clarityProjectId: "wyp7y04vxt",
-                tallyFormId: "vGKYYX",
+                formspreeEndpoint: "https://formspree.io/f/mgoqqvyy",
             };
         </script>
         <script>
@@ -649,8 +649,8 @@
             .field select,
             .field textarea {
                 width: 100%;
-                min-height: 44px;
-                padding: 11px 12px;
+                min-height: 46px;
+                padding: 12px 13px;
                 color: var(--ink);
                 background: #fff;
                 border: 1px solid var(--line);
@@ -666,12 +666,18 @@
             }
             
             .field textarea {
-                min-height: 90px;
+                min-height: 104px;
                 resize: vertical;
             }
             
+            .field-hint {
+                color: var(--muted);
+                font-size: 11px;
+                line-height: 1.5;
+            }
+            
             .submit-button {
-                min-height: 48px;
+                min-height: 50px;
                 color: #fff;
                 background: var(--accent);
                 border: 0;
@@ -680,48 +686,34 @@
                 cursor: pointer;
             }
             
-            .form-success {
+            .submit-button:disabled {
+                cursor: wait;
+                opacity: 0.72;
+            }
+            
+            .form-status {
                 display: none;
                 margin: 0;
                 padding: 12px;
-                color: var(--ink);
-                background: #fff2ef;
-                border: 1px solid #ffd4cc;
                 border-radius: 6px;
                 font-size: 13px;
                 line-height: 1.6;
             }
             
-            .waitlist-form.is-submitted .form-success {
+            .form-status.is-visible {
                 display: block;
             }
             
-            .form-note {
-                margin: 0;
-                color: var(--muted);
-                font-size: 12px;
-                line-height: 1.6;
+            .form-status.success {
+                color: var(--ink);
+                background: #fff2ef;
+                border: 1px solid #ffd4cc;
             }
             
-            .tally-frame {
-                width: 100%;
-                min-height: 560px;
-                border: 0;
-                border-radius: 6px;
-            }
-            
-            .tally-placeholder {
-                display: grid;
-                min-height: 520px;
-                place-items: center;
-                padding: 24px;
-                background: #fff;
-                border: 1px dashed var(--line);
-                border-radius: 6px;
-                color: var(--muted);
-                font-size: 14px;
-                line-height: 1.8;
-                text-align: center;
+            .form-status.error {
+                color: #7f1d1d;
+                background: #fff5f5;
+                border: 1px solid #ffc9c9;
             }
             
             footer {
@@ -1008,12 +1000,69 @@
                             </p>
                         </div>
 
-                        <div id="waitlist-form" class="waitlist-form">
-                            <div id="tally-embed"></div>
-                            <p class="form-note">
-                                Tally の送信完了後は <strong>/thanks.html</strong> に遷移するように設定してください。 個人情報は Tally 側で管理し、PostHog には送信しません。
-                            </p>
-                        </div>
+                        <form id="waitlist-form" class="waitlist-form" method="POST">
+                            <input type="hidden" name="_subject" value="Sumika ai 無料診断 Waitlist" />
+                            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display: none" />
+
+                            <div class="form-row">
+                                <div class="field">
+                                    <label for="company">会社名</label>
+                                    <input id="company" name="company" autocomplete="organization" required />
+                                </div>
+                                <div class="field">
+                                    <label for="name">お名前</label>
+                                    <input id="name" name="name" autocomplete="name" required />
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="email">メールアドレス</label>
+                                <input id="email" name="email" type="email" autocomplete="email" required />
+                            </div>
+
+                            <div class="form-row">
+                                <div class="field">
+                                    <label for="company_type">会社タイプ</label>
+                                    <select id="company_type" name="company_type" required>
+                                        <option value="">選択してください</option>
+                                        <option value="賃貸仲介">賃貸仲介</option>
+                                        <option value="売買仲介">売買仲介</option>
+                                        <option value="開発会社">開発会社</option>
+                                        <option value="その他">その他</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="monthly_leads">月間反響数</label>
+                                    <select id="monthly_leads" name="monthly_leads" required>
+                                        <option value="">選択してください</option>
+                                        <option value="0-30">0-30</option>
+                                        <option value="31-100">31-100</option>
+                                        <option value="101-300">101-300</option>
+                                        <option value="300+">300+</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="main_pain">一番困っていること</label>
+                                <select id="main_pain" name="main_pain" required>
+                                    <option value="">選択してください</option>
+                                    <option value="追客漏れ">追客漏れ</option>
+                                    <option value="営業状況が見えない">営業状況が見えない</option>
+                                    <option value="顧客情報が散らばる">顧客情報が散らばる</option>
+                                    <option value="成約率を上げたい">成約率を上げたい</option>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label for="message">任意メッセージ</label>
+                                <textarea id="message" name="message" placeholder="例：LINE返信後の追客漏れ、担当者ごとの進捗が見えない、内見後のフォローが属人化している"></textarea>
+                                <span class="field-hint">入力内容は Formspree に送信されます。PostHog には個人情報を送信しません。</span>
+                            </div>
+
+                            <button class="submit-button" type="submit">無料診断を申し込む</button>
+                            <p id="form-status" class="form-status" role="status"></p>
+                        </form>
                     </div>
                 </section>
             </main>
@@ -1037,50 +1086,63 @@
                 });
             });
 
-            const tallyEmbed = document.querySelector("#tally-embed");
-            const tallyFormId = window.SUMIKA_CONFIG.tallyFormId;
+            const waitlistForm = document.querySelector("#waitlist-form");
+            const formStatus = document.querySelector("#form-status");
+            const submitButton = waitlistForm ? .querySelector(".submit-button");
 
-            if (tallyEmbed && tallyFormId && tallyFormId !== "YOUR_TALLY_FORM_ID") {
-                tallyEmbed.innerHTML = `
-          <iframe
-            data-tally-src="https://tally.so/embed/${tallyFormId}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-            loading="lazy"
-            width="100%"
-            height="560"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0"
-            title="Sumika ai Waitlist"
-            class="tally-frame">
-          </iframe>
-        `;
-
-                const tallyScript = document.createElement("script");
-                tallyScript.src = "https://tally.so/widgets/embed.js";
-                tallyScript.async = true;
-                document.body.appendChild(tallyScript);
-            } else if (tallyEmbed) {
-                tallyEmbed.innerHTML = `
-          <div class="tally-placeholder">
-            Tally form placeholder<br>
-            Replace YOUR_TALLY_FORM_ID in window.SUMIKA_CONFIG with your published Tally form ID.
-          </div>
-        `;
-            }
-
-            window.addEventListener("message", (event) => {
-                if (typeof event.data !== "string") {
+            const showFormStatus = (message, type) => {
+                if (!formStatus) {
                     return;
                 }
 
-                if (event.data.includes("Tally.FormSubmitted")) {
-                    track("waitlist_submitted", {
-                        source: "tally_embed",
+                formStatus.textContent = message;
+                formStatus.className = `form-status ${type} is-visible`;
+            };
+
+            waitlistForm ? .addEventListener("submit", async(event) => {
+                event.preventDefault();
+
+                const endpoint = window.SUMIKA_CONFIG.formspreeEndpoint;
+
+                if (!endpoint || endpoint === "YOUR_FORMSPREE_ENDPOINT") {
+                    showFormStatus(
+                        "Formspree endpoint が未設定です。設定後にもう一度お試しください。",
+                        "error",
+                    );
+                    return;
+                }
+
+                submitButton.disabled = true;
+                submitButton.textContent = "送信中...";
+
+                try {
+                    const response = await fetch(endpoint, {
+                        method: "POST",
+                        body: new FormData(waitlistForm),
+                        headers: {
+                            Accept: "application/json",
+                        },
                     });
+
+                    if (!response.ok) {
+                        throw new Error("Form submission failed");
+                    }
+
+                    track("waitlist_submitted", {
+                        source: "formspree",
+                    });
+                    showFormStatus("送信ありがとうございます。確認ページへ移動します。", "success");
 
                     window.setTimeout(() => {
                         window.location.href = "./thanks.html";
                     }, 600);
+                } catch (error) {
+                    showFormStatus(
+                        "送信できませんでした。時間をおいてもう一度お試しください。",
+                        "error",
+                    );
+                    submitButton.disabled = false;
+                    submitButton.textContent = "無料診断を申し込む";
                 }
             });
 
