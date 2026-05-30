@@ -352,6 +352,16 @@
                 padding: 12px;
                 background: var(--block-soft);
                 border-radius: 8px;
+                cursor: pointer;
+                transition: border-color 160ms ease, background 160ms ease;
+                border: 1px solid transparent;
+            }
+            
+            .lead-row:hover,
+            .lead-row:focus-visible {
+                background: #fff;
+                border-color: var(--accent);
+                outline: none;
             }
             
             .line-icon {
@@ -849,27 +859,27 @@
                                     <div class="score-box">78<small>score</small></div>
                                 </div>
                                 <div class="lead-list">
-                                    <div class="lead-row">
+                                    <a class="lead-row" href="#contact" data-track="dashboard_lead" data-lead="nakamura">
                                         <span class="line-icon">
                       <svg viewBox="0 0 24 24"><path d="M4 19V5h16v10H8l-4 4Z" /></svg>
                     </span>
                                         <div><strong>中村様・2LDK / 予算 18万円</strong><span>恵比寿・中目黒希望 / 昨夜LINE返信</span></div>
                                         <span class="status">即対応</span>
-                                    </div>
-                                    <div class="lead-row">
+                                    </a>
+                                    <a class="lead-row" href="#contact" data-track="dashboard_lead" data-lead="sato">
                                         <span class="line-icon">
                       <svg viewBox="0 0 24 24"><path d="M12 3 3 10h3v10h12V10h3L12 3Z" /></svg>
                     </span>
                                         <div><strong>佐藤様・新築マンション購入</strong><span>ローン相談後 / 週末内見候補</span></div>
                                         <span class="status">高</span>
-                                    </div>
-                                    <div class="lead-row">
+                                    </a>
+                                    <a class="lead-row" href="#contact" data-track="dashboard_lead" data-lead="hayashi">
                                         <span class="line-icon">
                       <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16" /></svg>
                     </span>
                                         <div><strong>林様・福岡移住</strong><span>条件変更あり / 予算再確認</span></div>
                                         <span class="status">中</span>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="diagram-card gray stats-card">
@@ -1082,6 +1092,14 @@
                     track("cta_clicked", {
                         location: element.dataset.location,
                         label: element.textContent.trim(),
+                    });
+                });
+            });
+            
+            document.querySelectorAll("[data-track='dashboard_lead']").forEach((element) => {
+                element.addEventListener("click", () => {
+                    track("dashboard_lead_clicked", {
+                        lead: element.dataset.lead,
                     });
                 });
             });
