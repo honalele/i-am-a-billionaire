@@ -6,7 +6,19 @@ Landing page and brand asset draft for **Aqiya**, an AI sourcing agent for vacan
 
 - `index.html` - Static landing page.
 - `styles.css` - Minimal editorial infographic styling.
+- `integrations.js` - Formspree, PostHog, and Microsoft Clarity setup.
 - `logo.svg` - Primary logo concept.
+
+## Integrations
+
+Open `integrations.js` and replace:
+
+- `REPLACE_WITH_POSTHOG_API_KEY`
+
+Formspree is configured with form ID `mqejonjg`.
+Microsoft Clarity is configured with project ID `wzqsbnfufh`.
+
+For PostHog EU Cloud, change `posthogApiHost` to the host shown in your PostHog project settings.
 
 ## Design Notes
 

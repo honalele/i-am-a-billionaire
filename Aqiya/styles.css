@@ -30,6 +30,10 @@ a {
   text-decoration: none;
 }
 
+.accent-word {
+  color: var(--accent);
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -134,10 +138,10 @@ a {
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(420px, 0.92fr);
-  gap: clamp(36px, 6vw, 72px);
+  gap: clamp(30px, 5vw, 58px);
   align-items: center;
-  min-height: calc(100vh - 82px);
-  padding: 64px 0 78px;
+  min-height: 0;
+  padding: 42px 0 50px;
 }
 
 .eyebrow,
@@ -159,17 +163,17 @@ p {
 
 h1 {
   max-width: 720px;
-  margin-bottom: 24px;
-  font-size: clamp(46px, 7vw, 86px);
-  line-height: 1.04;
+  margin-bottom: 18px;
+  font-size: clamp(42px, 5.5vw, 66px);
+  line-height: 1.12;
   font-weight: 900;
   letter-spacing: 0;
 }
 
 h2 {
-  margin-bottom: 22px;
+  margin-bottom: 18px;
   font-size: clamp(30px, 4.4vw, 56px);
-  line-height: 1.12;
+  line-height: 1.16;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -193,7 +197,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: 34px 0 42px;
+  margin: 20px 0 24px;
 }
 
 .button {
@@ -219,7 +223,7 @@ h3 {
 }
 
 .metric-strip div {
-  padding: 18px 18px 18px 0;
+  padding: 14px 18px 14px 0;
 }
 
 .metric-strip div + div {
@@ -228,7 +232,7 @@ h3 {
 }
 
 .metric-strip dt {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 900;
 }
 
@@ -252,7 +256,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 18px;
+  padding: 14px 16px;
   border-bottom: 2px solid var(--ink);
 }
 
@@ -279,7 +283,7 @@ h3 {
 .dashboard-layout {
   display: grid;
   grid-template-columns: 0.88fr 1.12fr;
-  min-height: 430px;
+  min-height: 340px;
 }
 
 .map-panel {
@@ -346,9 +350,9 @@ h3 {
 
 .lead-panel {
   display: grid;
-  gap: 14px;
+  gap: 10px;
   align-content: start;
-  padding: 18px;
+  padding: 14px;
 }
 
 .lead-row {
@@ -356,7 +360,7 @@ h3 {
   grid-template-columns: 42px 1fr 52px;
   gap: 12px;
   align-items: center;
-  padding: 14px;
+  padding: 12px;
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -400,7 +404,7 @@ h3 {
 }
 
 .pipeline span {
-  min-height: 82px;
+  min-height: 64px;
   padding: 10px;
   background: var(--block);
   border: 1px solid var(--line);
@@ -411,7 +415,7 @@ h3 {
 }
 
 .section {
-  padding: 92px 0;
+  padding: 78px 0;
   border-top: 1px solid var(--line);
 }
 
@@ -429,8 +433,8 @@ h3 {
 }
 
 .info-card {
-  min-height: 260px;
-  padding: 24px;
+  min-height: 230px;
+  padding: 22px;
   background: var(--block);
   border-radius: 8px;
 }
@@ -447,7 +451,7 @@ h3 {
   display: block;
   width: 46px;
   height: 46px;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
 
 .search-icon {
@@ -511,7 +515,7 @@ h3 {
   grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.6fr);
   gap: 36px;
   align-items: end;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .value-band {
@@ -521,8 +525,8 @@ h3 {
 }
 
 .value-item {
-  min-height: 220px;
-  padding: 24px;
+  min-height: 190px;
+  padding: 22px;
   background: var(--paper);
 }
 
@@ -532,7 +536,7 @@ h3 {
 
 .value-item span {
   display: inline-flex;
-  margin-bottom: 42px;
+  margin-bottom: 30px;
   padding: 6px 10px;
   background: var(--accent);
   color: var(--paper);
@@ -555,7 +559,7 @@ h3 {
   display: grid;
   grid-template-columns: 62px 180px 1fr;
   gap: 20px;
-  padding: 24px 0;
+  padding: 20px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -573,13 +577,13 @@ h3 {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0;
-  margin-top: 40px;
+  margin-top: 30px;
   border: 2px solid var(--ink);
 }
 
 .workflow-steps article {
-  min-height: 250px;
-  padding: 22px;
+  min-height: 220px;
+  padding: 20px;
 }
 
 .workflow-steps article + article {
@@ -591,7 +595,7 @@ h3 {
   place-items: center;
   width: 38px;
   height: 38px;
-  margin-bottom: 44px;
+  margin-bottom: 30px;
   background: var(--accent);
   color: var(--paper);
   border-radius: 50%;
@@ -599,7 +603,7 @@ h3 {
 }
 
 .diagnosis {
-  padding: 92px 0;
+  padding: 78px 0;
   background:
     linear-gradient(var(--line) 1px, transparent 1px),
     linear-gradient(90deg, var(--line) 1px, transparent 1px),
@@ -611,14 +615,14 @@ h3 {
 .diagnosis-inner {
   display: grid;
   grid-template-columns: 0.9fr 0.7fr;
-  gap: clamp(32px, 6vw, 72px);
+  gap: clamp(28px, 5vw, 58px);
   align-items: start;
 }
 
 .waitlist-form {
   display: grid;
   gap: 14px;
-  padding: 24px;
+  padding: 22px;
   background: var(--paper);
   border: 2px solid var(--ink);
   border-radius: 8px;
@@ -648,6 +652,14 @@ h3 {
   border-color: var(--accent);
   cursor: pointer;
   font: inherit;
+}
+
+.form-status {
+  min-height: 20px;
+  margin: 0;
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .footer {
