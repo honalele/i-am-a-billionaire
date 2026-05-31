@@ -1,0 +1,16 @@
+<svg width="720" height="220" viewBox="0 0 720 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Aqiya logo</title>
+  <desc id="desc">Aqiya wordmark with a q shaped as a map pin, magnifier, and door handle.</desc>
+  <rect width="720" height="220" fill="#FFFFFF"/>
+  <g transform="translate(48 42)">
+    <text x="0" y="104" fill="#333333" font-family="'Noto Sans JP', 'Source Han Sans', 'Helvetica Neue', Arial, sans-serif" font-size="96" font-weight="800" letter-spacing="-1">A</text>
+    <g transform="translate(88 2)">
+      <path d="M58 0C26 0 0 26 0 58c0 43 58 92 58 92s58-49 58-92C116 26 90 0 58 0Z" fill="#F9604D"/>
+      <circle cx="58" cy="58" r="34" fill="#FFFFFF" stroke="#333333" stroke-width="8"/>
+      <path d="M83 84l34 34" stroke="#333333" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="72" cy="58" r="5" fill="#333333"/>
+    </g>
+    <text x="214" y="104" fill="#333333" font-family="'Noto Sans JP', 'Source Han Sans', 'Helvetica Neue', Arial, sans-serif" font-size="96" font-weight="800" letter-spacing="-1">iya</text>
+    <text x="2" y="158" fill="#333333" font-family="'Noto Sans JP', 'Source Han Sans', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="1.4">AI SOURCING AGENT FOR AKIYA DEALS</text>
+  </g>
+</svg>
