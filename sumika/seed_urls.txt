@@ -1,0 +1,25 @@
+# Add one public company website URL per line.
+# Example:
+# https://example-realestate.co.jp
+https://interliving.jp/
+https://tatenosangyou.co.jp/
+https://www.j-group-h.com/
+http://summit5050.co.jp/
+https://www.lead-home.jp/
+https://www.aeras-group.jp/
+https://uno1.jp/
+https://www.asahi-t-t.co.jp/
+https://www.besthousing.co.jp/
+https://www.spaceplan.jp/
+https://www.royal-h.jp/
+https://kamuguran.jp/
+https://www.livable.co.jp/
+https://p-homes.com/
+https://www.seiwa-fudosan.jp/
+https://apamanshop-hd.co.jp/
+https://asuxia.co.jp/
+http://apartner.co.jp/
+https://nagomi-fudousan.com/
+https://tonton-inc.com/
+https://albalink.co.jp/
+https://lotus-link.jp/
